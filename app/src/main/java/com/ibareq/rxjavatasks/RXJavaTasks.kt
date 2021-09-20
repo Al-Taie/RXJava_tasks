@@ -1,7 +1,6 @@
 package com.ibareq.rxjavatasks
 
-import androidx.core.util.toClosedRange
-import androidx.core.util.toRange
+
 import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.TimeUnit
 
@@ -60,7 +59,7 @@ object RXJavaTasks {
         val firstObservable = Observable.just("A", "B", "C", "D", "E").zipWith(Observable.interval(300, TimeUnit.MILLISECONDS), {item, _ -> item})
         val secondObservable = Observable.range(1,5).zipWith(Observable.interval(300, TimeUnit.MILLISECONDS), {item, _ -> item})
 
-        return Observable.
+        return firstObservable.zipWith(secondObservable, { char, num -> "$char$num" })
     }
 
 }
