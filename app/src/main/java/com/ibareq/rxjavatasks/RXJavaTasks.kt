@@ -1,5 +1,7 @@
 package com.ibareq.rxjavatasks
 
+import androidx.core.util.toClosedRange
+import androidx.core.util.toRange
 import io.reactivex.rxjava3.core.Observable
 import java.util.concurrent.TimeUnit
 
@@ -17,7 +19,8 @@ object RXJavaTasks {
      * let it emit characters form A to Z each 1 second
      */
     fun task1(): Observable<String> {
-        return Observable.
+        return Observable.fromIterable(('A'..'Z').toList().map { it.toString() })
+            .zipWith(Observable.interval(1, TimeUnit.SECONDS), {item, _ -> item})
     }
 
     /**
